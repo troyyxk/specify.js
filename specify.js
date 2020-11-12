@@ -1,8 +1,5 @@
 
 function Specify(targetId, parentId) {
-
-    this.circles = []
-
     this.targetId = targetId
     this.parentId = parentId
     this.target = document.getElementById(targetId);
@@ -50,15 +47,17 @@ Specify.prototype = {
 
 
 
-function CircleGenerator() {
+function CircleGenerator(targetId, parentId) {
     // the constructor function shouhld instantiate any variables that
     //  each Circle Generator instance should have a unique version of.
     //  In this case, each CG should have its own array of circles separate from
     //  other CGs.
     this.circles = []
-    const circle = document.createElement('div')
+    this.targetId = targetId
+    this.parentId = parentId
+    const circle = document.createElement('button')
     circle.style = 'width: 60px; height: 60px; border-radius: 50%; margin: 10px; background-color: Aqua;'
-
+    this.circle = circle
     // why not use a little jQuery:
     const body = $('body') // jQuery equivalent to: const body = document.querySelector('body')
     body.append(circle)
@@ -81,6 +80,9 @@ CircleGenerator.prototype = {
 
         this.circles.push(circle) // add to the circles list
         console.log(this.circles)
+        console.log(this.targetId)
+        console.log(this.parentId)
+        console.log(this.circle)
     },
 
     changeCirclesColor: function () {
