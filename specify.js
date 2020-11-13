@@ -53,8 +53,6 @@ function CircleGenerator(targetId, parentId) {
     //  In this case, each CG should have its own array of circles separate from
     //  other CGs.
     this.circles = []
-    this.targetId = targetId
-    this.parentId = parentId
     const circle = document.createElement('button')
     circle.style = 'width: 60px; height: 60px; border-radius: 50%; margin: 10px; background-color: Aqua;'
     this.circle = circle
@@ -63,6 +61,14 @@ function CircleGenerator(targetId, parentId) {
     body.append(circle)
     // this..
     // this.. (any values you need for each 'instance' of this library)
+
+    ///////////////////////
+
+    this.targetId = targetId
+    this.parentId = parentId
+    this.target = document.getElementById(targetId);
+    cur_target = document.getElementById(targetId);
+    this.parent = document.getElementById(parentId);
 }
 
 // For funcionality and values common to all CircleGenerators,
