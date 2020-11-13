@@ -48,53 +48,53 @@ Specify.prototype = {
 
 
 function CircleGenerator(targetId, parentId) {
-    // the constructor function shouhld instantiate any variables that
-    //  each Circle Generator instance should have a unique version of.
-    //  In this case, each CG should have its own array of circles separate from
-    //  other CGs.
-    this.circles = []
-    const circle = document.createElement('button')
-    circle.style = 'width: 60px; height: 60px; border-radius: 50%; margin: 10px; background-color: Aqua;'
-    this.circle = circle
-    // why not use a little jQuery:
-    const body = $('body') // jQuery equivalent to: const body = document.querySelector('body')
-    body.append(circle)
-    // this..
-    // this.. (any values you need for each 'instance' of this library)
+    //     // the constructor function shouhld instantiate any variables that
+    //     //  each Circle Generator instance should have a unique version of.
+    //     //  In this case, each CG should have its own array of circles separate from
+    //     //  other CGs.
+    //     this.circles = []
+    //     const circle = document.createElement('button')
+    //     circle.style = 'width: 60px; height: 60px; border-radius: 50%; margin: 10px; background-color: Aqua;'
+    //     this.circle = circle
+    //     // why not use a little jQuery:
+    //     const body = $('body') // jQuery equivalent to: const body = document.querySelector('body')
+    //     body.append(circle)
+    //     // this..
+    //     // this.. (any values you need for each 'instance' of this library)
 
-    ///////////////////////
+    //     ///////////////////////
 
-    this.targetId = targetId
-    this.parentId = parentId
-    this.target = document.getElementById(targetId);
-    cur_target = document.getElementById(targetId);
-    this.parent = document.getElementById(parentId);
+    //     this.targetId = targetId
+    //     this.parentId = parentId
+    //     this.target = document.getElementById(targetId);
+    //     cur_target = document.getElementById(targetId);
+    //     this.parent = document.getElementById(parentId);
 }
 
-// For funcionality and values common to all CircleGenerators,
-//  we can add to the prototype property of the constructor.
+// // For funcionality and values common to all CircleGenerators,
+// //  we can add to the prototype property of the constructor.
 CircleGenerator.prototype = {
 
-    // Every CG will make use of the same makeCircle() and changeCircleColors function
-    makeCircle: function () {
-        const circle = document.createElement('div')
-        circle.style = 'width: 60px; height: 60px; border-radius: 50%; margin: 10px; background-color: Aqua;'
+    //     // Every CG will make use of the same makeCircle() and changeCircleColors function
+    //     makeCircle: function () {
+    //         const circle = document.createElement('div')
+    //         circle.style = 'width: 60px; height: 60px; border-radius: 50%; margin: 10px; background-color: Aqua;'
 
-        // why not use a little jQuery:
-        const body = $('body') // jQuery equivalent to: const body = document.querySelector('body')
-        body.append(circle)
+    //         // why not use a little jQuery:
+    //         const body = $('body') // jQuery equivalent to: const body = document.querySelector('body')
+    //         body.append(circle)
 
-        this.circles.push(circle) // add to the circles list
-        console.log(this.circles)
-        console.log(this.targetId)
-        console.log(this.parentId)
-        console.log(this.circle)
-    },
+    //         this.circles.push(circle) // add to the circles list
+    //         console.log(this.circles)
+    //         console.log(this.targetId)
+    //         console.log(this.parentId)
+    //         console.log(this.circle)
+    //     },
 
-    changeCirclesColor: function () {
-        for (let i = 0; i < this.circles.length; i++) {
-            this.circles[i].style.backgroundColor = 'darkmagenta'
-        }
-    }
+    //     changeCirclesColor: function () {
+    //         for (let i = 0; i < this.circles.length; i++) {
+    //             this.circles[i].style.backgroundColor = 'darkmagenta'
+    //         }
+    //     }
 
 }
