@@ -6,21 +6,19 @@ function Specify(targetId, parentId) {
     cur_target = document.getElementById(targetId);
     this.parent = document.getElementById(parentId);
 
-    // console.log(this.target)
-    // console.log(this.parent)
-
     // warning label
     this.warningLabel = document.createElement('div');
     this.warningLabel.className = 'specify'
     this.warningLabel.id = 'warningLabel'
-    this.warningLabel.style = 'background-color: Aqua;';
-    // console.log($('#' + this.targetId).width())
+    // this.warningLabel.style = 'background-color: Aqua;';
 
     // check button
     this.checkButton = document.createElement('button');
     this.checkButton.className = 'specify'
+    this.checkButton.id = 'checkButton'
     let buttonText = document.createTextNode("check");
     this.checkButton.appendChild(buttonText);
+    this.checkButton.rexs = []
     // this.checkButton.addEventListener("click", { this.warningLabel.style.display = true; });
 
     this.parent.insertBefore(this.checkButton, this.target.nextSibling)
@@ -28,73 +26,68 @@ function Specify(targetId, parentId) {
 
     // force them to have the same width
     $('#warningLabel').width($('#' + this.targetId).width() * 1.2)
-    this.warningLabel.style.display = 'none';
-    // document.getElementById('warningLabel').style.display = "none"
-    // this.warningLabel.style.display = "block";
-
+    $('#' + this.warningLabel.id).hide()
 }
 
 Specify.prototype = {
-    check: function () {
-        console.log("hi")
-        // this.warningLabel.style.display = true;
-        console.log(this.targetId)
-        // document.getElementById('warningLabel').style.display = 'block';
+    checkRules: async function () {
+        let allRulesPass = true
+        let input = $('#' + this.id).prev().val()
+        violatedRule = null
+        for (rule of this.rexs) {
+            console.log(rule)
+            switch (rule.type) {
+                case 'missing':
+                    if (input.includes(rule.value)) { continue; }
+                    console.log("Violate rule of type: missing")
+                    violatedRule = rule
+                    allRulesPass = false
+                    break
+                case 'lengthAtLeast':
+                    if (input.length >= rule.value) { continue; }
+                    console.log("Violate rule of type: lengthAtLeast")
+                    violatedRule = rule
+                    allRulesPass = false
+                    break
+                case 'others':
+                    console.log("Violate rule of type: other")
+                    break
+            }
+            if (!allRulesPass) break
+        }
+        if (allRulesPass) {
+            console.log("All rules passed")
+            $('#' + this.id).prev().prev().css('background-color', "Aqua")
+            $('#' + this.id).prev().prev().text("All rules passed")
+            $('#warningLabel').show()
+            window.setTimeout(() => {
+                $('.' + this.className).remove();
+            }, 2000);
+            return
+        }
+        // not all cases passed
+        // common to all rules
+        warningLabelColor = violatedRule.warningColor ? violatedRule.warningColor : 'red';
+        $('#' + this.id).prev().prev().text(violatedRule.errorMessage)
+        $('#' + this.id).prev().prev().css('background-color', warningLabelColor)
+        $('#warningLabel').show()
+        this.rexs.push(1)
+    },
 
+    addRules: function (rule) {
+        if (!['missing', 'lengthAtLeast', 'other'].includes(rule.type)) {
+            console.log("Rule type must be one of 'missing', 'lengthAtLeast' or 'other'")
+            return
+        }
+        if (rule.type === 'lengthAtLeast' && !Number.isInteger(rule.value)) {
+            console.log("Length must be an integer")
+            return
+        }
+        this.checkButton.rexs.push(rule)
+    },
+
+    clearRules: function () {
+        this.checkButton.rexs = []
     }
-
-}
-
-
-
-function CircleGenerator(targetId, parentId) {
-    //     // the constructor function shouhld instantiate any variables that
-    //     //  each Circle Generator instance should have a unique version of.
-    //     //  In this case, each CG should have its own array of circles separate from
-    //     //  other CGs.
-    //     this.circles = []
-    //     const circle = document.createElement('button')
-    //     circle.style = 'width: 60px; height: 60px; border-radius: 50%; margin: 10px; background-color: Aqua;'
-    //     this.circle = circle
-    //     // why not use a little jQuery:
-    //     const body = $('body') // jQuery equivalent to: const body = document.querySelector('body')
-    //     body.append(circle)
-    //     // this..
-    //     // this.. (any values you need for each 'instance' of this library)
-
-    //     ///////////////////////
-
-    //     this.targetId = targetId
-    //     this.parentId = parentId
-    //     this.target = document.getElementById(targetId);
-    //     cur_target = document.getElementById(targetId);
-    //     this.parent = document.getElementById(parentId);
-}
-
-// // For funcionality and values common to all CircleGenerators,
-// //  we can add to the prototype property of the constructor.
-CircleGenerator.prototype = {
-
-    //     // Every CG will make use of the same makeCircle() and changeCircleColors function
-    //     makeCircle: function () {
-    //         const circle = document.createElement('div')
-    //         circle.style = 'width: 60px; height: 60px; border-radius: 50%; margin: 10px; background-color: Aqua;'
-
-    //         // why not use a little jQuery:
-    //         const body = $('body') // jQuery equivalent to: const body = document.querySelector('body')
-    //         body.append(circle)
-
-    //         this.circles.push(circle) // add to the circles list
-    //         console.log(this.circles)
-    //         console.log(this.targetId)
-    //         console.log(this.parentId)
-    //         console.log(this.circle)
-    //     },
-
-    //     changeCirclesColor: function () {
-    //         for (let i = 0; i < this.circles.length; i++) {
-    //             this.circles[i].style.backgroundColor = 'darkmagenta'
-    //         }
-    //     }
 
 }
