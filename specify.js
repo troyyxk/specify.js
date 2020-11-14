@@ -35,7 +35,7 @@ Specify.prototype = {
         let input = $('#' + this.id).prev().val()
         violatedRule = null
         for (rule of this.rexs) {
-            console.log(rule)
+            // console.log(rule)
             switch (rule.type) {
                 case 'missing':
                     if (input.includes(rule.value)) { continue; }
@@ -49,8 +49,12 @@ Specify.prototype = {
                     violatedRule = rule
                     allRulesPass = false
                     break
-                case 'others':
+                case 'other':
+                    let cur_regex = new RegExp(rule.value)
+                    if (input.match(cur_regex)) { continue; }
                     console.log("Violate rule of type: other")
+                    violatedRule = rule
+                    allRulesPass = false
                     break
             }
             if (!allRulesPass) break
