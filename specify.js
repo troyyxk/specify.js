@@ -7,10 +7,10 @@ function Specify(targetId, parentId) {
     this.parent = document.getElementById(parentId);
 
     // warning label above
-    this.warningLabel = document.createElement('div');
-    this.warningLabel.className = 'specify'
-    this.warningLabel.id = 'warningLabel'
-    // this.warningLabel.style = 'background-color: Aqua;';
+    this.warningLabelAbove = document.createElement('div');
+    this.warningLabelAbove.className = 'specify'
+    this.warningLabelAbove.id = 'warningLabelAbove'
+    // this.warningLabelAbove.style = 'background-color: Aqua;';
 
     // check button
     this.checkButton = document.createElement('button');
@@ -19,14 +19,14 @@ function Specify(targetId, parentId) {
     let buttonText = document.createTextNode("check");
     this.checkButton.appendChild(buttonText);
     this.checkButton.rexs = []
-    // this.checkButton.addEventListener("click", { this.warningLabel.style.display = true; });
+    // this.checkButton.addEventListener("click", { this.warningLabelAbove.style.display = true; });
 
     this.parent.insertBefore(this.checkButton, this.target.nextSibling)
-    this.parent.insertBefore(this.warningLabel, this.target)
+    this.parent.insertBefore(this.warningLabelAbove, this.target)
 
     // force them to have the same width
-    $('#warningLabel').width($('#' + this.targetId).width() * 1.2)
-    $('#' + this.warningLabel.id).hide()
+    $('#warningLabelAbove').width($('#' + this.targetId).width() * 1.2)
+    $('#' + this.warningLabelAbove.id).hide()
 }
 
 Specify.prototype = {
@@ -63,7 +63,7 @@ Specify.prototype = {
             console.log("All rules passed")
             $('#' + this.id).prev().prev().css('background-color', "Aqua")
             $('#' + this.id).prev().prev().text("All rules passed")
-            $('#warningLabel').show()
+            $('#warningLabelAbove').show()
             window.setTimeout(() => {
                 $('.' + this.className).remove();
             }, 2000);
@@ -71,11 +71,11 @@ Specify.prototype = {
         }
         // not all cases passed
         // common to all rules
-        warningLabelColor = violatedRule.warningColor ? violatedRule.warningColor : 'red';
+        warningLabelAboveColor = violatedRule.warningColor ? violatedRule.warningColor : 'red';
         $('#' + this.id).prev().prev().text(violatedRule.errorMessage)
-        $('#' + this.id).prev().prev().css('background-color', warningLabelColor)
-        $('#' + this.id).parent().css('background-color', warningLabelColor)
-        $('#warningLabel').show()
+        $('#' + this.id).prev().prev().css('background-color', warningLabelAboveColor)
+        $('#' + this.id).parent().css('background-color', warningLabelAboveColor)
+        $('#warningLabelAbove').show()
         this.rexs.push(1)
     },
 
