@@ -6,7 +6,7 @@ function Specify(targetId, parentId) {
     cur_target = document.getElementById(targetId);
     this.parent = document.getElementById(parentId);
 
-    // warning label
+    // warning label above
     this.warningLabel = document.createElement('div');
     this.warningLabel.className = 'specify'
     this.warningLabel.id = 'warningLabel'
@@ -74,6 +74,7 @@ Specify.prototype = {
         warningLabelColor = violatedRule.warningColor ? violatedRule.warningColor : 'red';
         $('#' + this.id).prev().prev().text(violatedRule.errorMessage)
         $('#' + this.id).prev().prev().css('background-color', warningLabelColor)
+        $('#' + this.id).parent().css('background-color', warningLabelColor)
         $('#warningLabel').show()
         this.rexs.push(1)
     },
