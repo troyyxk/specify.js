@@ -12,6 +12,11 @@ function Specify(targetId, parentId) {
     this.warningLabelAbove.id = 'warningLabelAbove'
     // this.warningLabelAbove.style = 'background-color: Aqua;';
 
+    // warning label above
+    this.warningLabelBelow = document.createElement('div');
+    this.warningLabelBelow.className = 'specify'
+    this.warningLabelBelow.id = 'warningLabelBelow'
+
     // check button
     this.checkButton = document.createElement('button');
     this.checkButton.className = 'specify'
@@ -23,9 +28,13 @@ function Specify(targetId, parentId) {
 
     this.parent.insertBefore(this.checkButton, this.target.nextSibling)
     this.parent.insertBefore(this.warningLabelAbove, this.target)
+    this.parent.appendChild(this.warningLabelBelow)
+
+    $('#' + this.parentId).width($('#' + this.targetId).width() * 2)
+
 
     // force them to have the same width
-    $('#warningLabelAbove').width($('#' + this.targetId).width() * 1.2)
+    $('#warningLabelAbove').width($('#' + this.targetId).width() * 1.5)
     $('#' + this.warningLabelAbove.id).hide()
 }
 
@@ -65,6 +74,7 @@ Specify.prototype = {
             $('#' + this.id).prev().prev().text("All rules passed")
             $('#warningLabelAbove').show()
             window.setTimeout(() => {
+                $('#' + this.id).parent().css('background-color', "")
                 $('.' + this.className).remove();
             }, 2000);
             return
@@ -73,8 +83,8 @@ Specify.prototype = {
         // common to all rules
         warningLabelAboveColor = violatedRule.warningColor ? violatedRule.warningColor : 'red';
         $('#' + this.id).prev().prev().text(violatedRule.errorMessage)
-        $('#' + this.id).prev().prev().css('background-color', warningLabelAboveColor)
-        $('#' + this.id).parent().css('background-color', warningLabelAboveColor)
+        // $('#' + this.id).prev().prev().css('background-color', warningLabelAboveColor)
+        $('#' + this.id).parent().css('background-image', "linear-gradient(to bottom right, red, yellow)")
         $('#warningLabelAbove').show()
         this.rexs.push(1)
     },

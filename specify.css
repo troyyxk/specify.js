@@ -11,3 +11,9 @@
     height: 20px;
     background-color: red;
 }
+
+#checkButton{
+    color: white;
+    text-shadow: 0 0 3px green;
+    /* text-shadow: 2px 2px green; */
+}
