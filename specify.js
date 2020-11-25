@@ -31,10 +31,10 @@ function Specify(targetId, parentId) {
     this.parent.appendChild(this.warningLabelBelow)
 
     $('#' + this.parentId).width($('#' + this.targetId).width() * 2)
-
+    $('#' + this.parentId).css("border-radius", "10px")
 
     // force them to have the same width
-    $('#warningLabelAbove').width($('#' + this.targetId).width() * 1.5)
+    // $('#warningLabelAbove').width($('#' + this.targetId).width() * 1.5)
     $('#' + this.warningLabelAbove.id).hide()
 }
 
@@ -70,11 +70,11 @@ Specify.prototype = {
         }
         if (allRulesPass) {
             console.log("All rules passed")
-            $('#' + this.id).prev().prev().css('background-color', "Aqua")
+            // $('#' + this.id).prev().prev().css('background-color', "Aqua")  // to be consistant with the back ground
             $('#' + this.id).prev().prev().text("All rules passed")
             $('#warningLabelAbove').show()
             window.setTimeout(() => {
-                $('#' + this.id).parent().css('background-color', "")
+                $('#' + this.id).parent().removeAttr("style")
                 $('.' + this.className).remove();
             }, 2000);
             return

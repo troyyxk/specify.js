@@ -17,3 +17,27 @@
     text-shadow: 0 0 3px green;
     /* text-shadow: 2px 2px green; */
 }
+
+
+h1 {
+    width: 300px;
+    height: 100px;
+    padding: 15px;
+    background-color: yellow;
+    box-shadow: 10px 10px;
+    margin-left: 300px;
+  }
+
+h2 {
+    margin-left: 300px;
+}
+  
+
+  .p {
+    margin-left: 300px;
+  }
+
+#warningLabelAbove{
+  margin-left: 10px;
+}
+  
