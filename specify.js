@@ -45,24 +45,22 @@ Specify.prototype = {
         violatedRule = null
         for (rule of this.rexs) {
             // console.log(rule)
+            violatedRule = rule
             switch (rule.type) {
                 case 'missing':
                     if (input.includes(rule.value)) { continue; }
                     console.log("Violate rule of type: missing")
-                    violatedRule = rule
                     allRulesPass = false
                     break
                 case 'lengthAtLeast':
                     if (input.length >= rule.value) { continue; }
                     console.log("Violate rule of type: lengthAtLeast")
-                    violatedRule = rule
                     allRulesPass = false
                     break
                 case 'other':
                     let cur_regex = new RegExp(rule.value)
                     if (input.match(cur_regex)) { continue; }
                     console.log("Violate rule of type: other")
-                    violatedRule = rule
                     allRulesPass = false
                     break
             }
@@ -85,8 +83,19 @@ Specify.prototype = {
         $('#' + this.id).prev().prev().text(violatedRule.errorMessage)
         // $('#' + this.id).prev().prev().css('background-color', warningLabelAboveColor)
         $('#' + this.id).parent().css('background-image', "linear-gradient(to bottom right, red, yellow)")
+
+        // animation
+        if (violatedRule.animation === "shake") {
+            $('#' + this.id).parent().css('animation', "shake 0.5s")
+            $('#' + this.id).parent().css('animation-iteration-count', "1")
+            window.setTimeout(() => {
+                $('#' + this.id).parent().css('animation', "")
+                $('#' + this.id).parent().css('animation-iteration-count', "")
+            }, 1000);
+        }
+
         $('#warningLabelAbove').show()
-        this.rexs.push(1)
+        // this.rexs.push(1)
     },
 
     addRules: function (rule) {
