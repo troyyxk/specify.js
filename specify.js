@@ -47,9 +47,9 @@ Specify.prototype = {
             // console.log(rule)
             violatedRule = rule
             switch (rule.type) {
-                case 'missing':
+                case 'missing-front':
                     if (input.includes(rule.value)) { continue; }
-                    console.log("Violate rule of type: missing")
+                    console.log("Violate rule of type: missing-front")
                     allRulesPass = false
                     break
                 case 'lengthAtLeast':
@@ -69,11 +69,13 @@ Specify.prototype = {
 
         // common to all, no matter pass or not pass
         $('#' + this.id).parent().css('background-image', "linear-gradient(to bottom right, red, yellow)")
+        $('#' + this.id).next().text(".")  // set the warning label below to not visible
+        $('#' + this.id).next().css("opacity", "0")
+
 
         // all rules pass
         if (allRulesPass) {
             console.log("All rules passed")
-            // $('#' + this.id).prev().prev().css('background-color', "Aqua")  // to be consistant with the back ground
             $('#' + this.id).prev().prev().text("All rules passed")
             $('#warningLabelAbove').show()
             window.setTimeout(() => {
@@ -86,10 +88,9 @@ Specify.prototype = {
         // not all cases passed, common to all rules
         warningLabelAboveColor = violatedRule.warningColor ? violatedRule.warningColor : 'red';
         $('#' + this.id).prev().prev().text(violatedRule.errorMessage)
-        // $('#' + this.id).prev().prev().css('background-color', warningLabelAboveColor)
 
         // animation
-        if (violatedRule.animation === "shake") {
+        if (violatedRule.animation === "shake") {  // shake
             $('#' + this.id).parent().css('animation', "shake 0.5s")
             $('#' + this.id).parent().css('animation-iteration-count', "1")
             window.setTimeout(() => {
@@ -98,13 +99,38 @@ Specify.prototype = {
             }, 1000);
         }
 
+        // buildin rules' animations:
+        if (violatedRule.type == "missing-front") {
+            let cur_time = 0
+            window.setTimeout(() => {
+                $('#' + this.id).next().css('opacity', "100")
+                $('#' + this.id).next().text("Somthing is missing at the front, eh?")
+            }, cur_time);
+            cur_time += 3000
+            window.setTimeout(() => {
+                if (!input.replace(/\s/g, '').length) {
+                    input = "blablabla"
+                }
+                $('#' + this.id).next().text(input)
+            }, cur_time);
+            cur_time += 1000
+            window.setTimeout(() => {
+                $('#' + this.id).next().text(input)
+                $('#' + this.id).next().text(".")  // set the warning label below to not visible
+                $('#' + this.id).next().css("opacity", "0")
+            }, cur_time);
+
+        }
+
+
+
         $('#warningLabelAbove').show()
         // this.rexs.push(1)
     },
 
     addRules: function (rule) {
-        if (!['missing', 'lengthAtLeast', 'other'].includes(rule.type)) {
-            console.log("Rule type must be one of 'missing', 'lengthAtLeast' or 'other'")
+        if (!['missing-front', 'lengthAtLeast', 'other'].includes(rule.type)) {
+            console.log("Rule type must be one of 'missing-front', 'lengthAtLeast' or 'other'")
             return
         }
         if (rule.type === 'lengthAtLeast' && !Number.isInteger(rule.value)) {
