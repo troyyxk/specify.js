@@ -66,6 +66,11 @@ Specify.prototype = {
             }
             if (!allRulesPass) break
         }
+
+        // common to all, no matter pass or not pass
+        $('#' + this.id).parent().css('background-image', "linear-gradient(to bottom right, red, yellow)")
+
+        // all rules pass
         if (allRulesPass) {
             console.log("All rules passed")
             // $('#' + this.id).prev().prev().css('background-color', "Aqua")  // to be consistant with the back ground
@@ -77,12 +82,11 @@ Specify.prototype = {
             }, 2000);
             return
         }
-        // not all cases passed
-        // common to all rules
+
+        // not all cases passed, common to all rules
         warningLabelAboveColor = violatedRule.warningColor ? violatedRule.warningColor : 'red';
         $('#' + this.id).prev().prev().text(violatedRule.errorMessage)
         // $('#' + this.id).prev().prev().css('background-color', warningLabelAboveColor)
-        $('#' + this.id).parent().css('background-image', "linear-gradient(to bottom right, red, yellow)")
 
         // animation
         if (violatedRule.animation === "shake") {

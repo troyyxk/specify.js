@@ -7,11 +7,6 @@
     color: navy;
 }
 
-#warningLabel {
-    height: 20px;
-    background-color: red;
-}
-
 #checkButton{
     color: white;
     text-shadow: 0 0 3px green;
@@ -39,6 +34,9 @@ h2 {
 
 #warningLabelAbove{
   margin-left: 10px;
+  color: rgb(13, 78, 13);
+  font-family:verdana;
+
 }
 
 @keyframes shake {
