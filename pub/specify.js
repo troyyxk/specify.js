@@ -36,6 +36,13 @@ function Specify(targetId, parentId) {
     // force them to have the same width
     // $('#warningLabelAbove').width($('#' + this.targetId).width() * 1.5)
     $('#' + this.warningLabelAbove.id).hide()
+
+    // make the enter the same as click
+    $('#' + targetId).on("keypress", function (e) {
+        if (e.keyCode == 13) {
+            $('#checkButton').click();
+        }
+    });
 }
 
 Specify.prototype = {
