@@ -112,11 +112,11 @@ Specify.prototype = {
             $('#' + this.id).prev().prev().text("All rules passed")
             $('#warningLabelAbove').show()
 
-            cur_time += 1000
-            window.setTimeout(() => {
-                $('#' + this.id).parent().removeAttr("style")
-                $('.' + this.className).remove();
-            }, cur_time);
+            // cur_time += 1000
+            // window.setTimeout(() => {
+            //     $('#' + this.id).parent().removeAttr("style")
+            //     $('.' + this.className).remove();
+            // }, cur_time);
             return
         }
 
