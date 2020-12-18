@@ -3,6 +3,10 @@
     margin-left: 20px;
   } */
 
+p {
+  max-width: 500px;
+}
+
 .specify {
     color: navy;
 }
