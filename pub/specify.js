@@ -1,4 +1,3 @@
-
 function Specify(targetId, parentId) {
     this.targetId = targetId
     this.parentId = parentId
@@ -140,7 +139,24 @@ Specify.prototype = {
                 $('#' + this.id).parent().css('animation-iteration-count', "")
             }, 4000);
         } else if (violatedRule.animation === "shake") {  // shake
+            console.log("shake")
             $('#' + this.id).parent().css('animation', "shake 0.5s")
+            $('#' + this.id).parent().css('animation-iteration-count', "1")
+            window.setTimeout(() => {
+                $('#' + this.id).parent().css('animation', "")
+                $('#' + this.id).parent().css('animation-iteration-count', "")
+            }, 1000);
+        } else if (violatedRule.animation === "bounce") {  // bounce
+            console.log("bounce")
+            $('#' + this.id).parent().css('animation', "bounce 0.5s")
+            $('#' + this.id).parent().css('animation-iteration-count', "1")
+            window.setTimeout(() => {
+                $('#' + this.id).parent().css('animation', "")
+                $('#' + this.id).parent().css('animation-iteration-count', "")
+            }, 1000);
+        } else if (violatedRule.animation === "float") {  // float
+            console.log("float")
+            $('#' + this.id).parent().css('animation', "float 0.5s")
             $('#' + this.id).parent().css('animation-iteration-count', "1")
             window.setTimeout(() => {
                 $('#' + this.id).parent().css('animation', "")

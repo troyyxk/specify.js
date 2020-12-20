@@ -5,6 +5,12 @@
 
 p {
   max-width: 500px;
+  margin-left: 300px;
+}
+
+h5 {
+  max-width: 500px;
+  margin-left: 320px;
 }
 
 .specify {
@@ -35,9 +41,6 @@ h2 {
   margin-left: 300px;
 }
 
-p {
-  margin-left: 300px;
-}
 
 #warningLabelAbove{
   margin-left: 10px;
@@ -96,7 +99,30 @@ p {
   90% { transform: translate(1px, 2px) rotate(0deg); }
   100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
-  
+
+@keyframes bounce {
+  0%,
+  50%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-35px);
+  }
+  60% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
 
 ul {
   list-style-type: none;

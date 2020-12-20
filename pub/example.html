@@ -18,14 +18,36 @@
     </ul>
     <h1 class='center-screen'>Specify Demo</h1>
     <!-- <p>One left blank and anohter one left for testing</p> -->
+    <h2 class='center-screen'>Descrption</h2>
 
-    <h2 class='center-screen'>Test</h2>
+    <p>This is a text checker library, the developer will design rules that clients need to follow.</p>
+
+    <p>There are several pre-defined warning rules:</p>
+    <h5>missing-front</h5>
+    <h5>missing-back</h5>
+    <h5>missing</h5>
+    <h5>lengthAtLeast</h5>
+    <h5>lengthAtMost</h5>
+
+    <p>If non of the predefined rule is useful to you, you can define your own rule with regex and set the type of rule
+        to:</p>
+    <h5>other</h5>
+
+    <p>There are several warning animation:</p>
+    <h5>rotate-c (rotate counter clockwise)</h5>
+    <h5>rotate-cc (rotate counterclockwise)</h5>
+    <h5>shake</h5>
+    <h5>bounce</h5>
+    <h5>float</h5>
+    <h5>warning-colorChange</h5>
+
+
+    <h2 class='center-screen'>Example</h2>
     <div id='test_form' class='testing'>
         <input id='test' type="text" placeholder="Test">
     </div>
 
     <div>
-        <p>This is a text checker library, the developer will design rules that clients need to follow</p>
         <p>Enter "a", click check, you will encounter the first rule, animation is shaking and there is a gif-like
             toturial teaching
             you how to fix it</p>
@@ -50,12 +72,8 @@
         </p>
         <p>Enter
             "UofT_aaaaaaaaaaaaaaaaaaaaaaaa9aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacura@gaming",
-            click check, you will encounter the sixth rule </p>
+            click check, you will encounter the sixth rule, the animation is float </p>
         <p>Enter "UofT_aaaaaaacura9@gaming", click check, you pass all rules, congratulations!</p>
-        <h2>Future work and charllanges</h2>
-        <p>Future work would be making more intuitive animations, better tutorial and maketutorial modules that</p>
-        <p> would enable developer to custome their own toturial</p>
-        <p>Challanges I have is to coordinate with the textbox since it is not part of the library but the library works
-            around it.</p>
+
     </div>
 </body>
