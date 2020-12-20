@@ -22,6 +22,29 @@
     <!-- <p>One left blank and anohter one left for testing</p> -->
     <h2 class='center-screen'>Getting Started</h2>
 
+    <p>First create an instace of Specify.js by </p>
+    <code>
+        <p>const sp = new Specify({"selfId"}, {"parentId"})</p>
+        <p>selfId: the id of the textbox you want specify you attach to</p>
+        <p>parentId: the id of the parent of the text boxs</p>
+    </code>
+
+    <p>Then attch the rule to the newly created button</p>
+    <code>
+        <p>sp.checkButton.addEventListener("click", sp.checkRules)</p>
+    </code>
+
+    <p>Finally, we can start adding rules in the following way:</p>
+    <code>
+        <p>sp.addRules({ type: "{rule}", value: "{value}", errorMessage: "{errorMessage}", warningColor: "{warningColor}", animation: "{animation}" })</p>
+        <p>rule: the rule to use</p>
+        <p>value: the value to use for rule, for lengh related rule, it should be an int; for missing related rult, it should be the value that is missing; for other, it should be a regex exression</p>
+        <p>errorMessage: the error message that shold appear</p>
+        <p>warningColor: the warning color to use</p>
+        <p>animation: the animation to use</p>
+    </code>
+
+
     <p>This is a text checker library, the developer will design rules that clients need to follow.</p>
 
     <p>There are several pre-defined warning rules:</p>

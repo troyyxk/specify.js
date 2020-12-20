@@ -4,9 +4,9 @@
 // console.log('ss@ss'.match(isEmail))
 
 const sp = new Specify('test', 'test_form')
+sp.checkButton.addEventListener("click", sp.checkRules)
 
 function example() {
-    sp.checkButton.addEventListener("click", sp.checkRules)
     sp.addRules({ type: "missing-front", value: "UofT_", errorMessage: "Start with UofT_", warningColor: "Aqua", animation: "shake" })
     sp.addRules({ type: "lengthAtLeast", value: 9, errorMessage: "length should be at least 9", warningColor: "yellow", animation: "bounce" })
     sp.addRules({ type: "missing-back", value: "@gaming", errorMessage: "End with @gaming", warningColor: "Aqua", animation: "warning-colorChange" })
