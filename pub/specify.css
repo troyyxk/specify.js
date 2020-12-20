@@ -36,6 +36,11 @@ h1 {
 h2 {
     margin-left: 300px;
 }
+
+hr {
+  margin-left: 300px;
+  width: 500px;
+}
   
 .testing {
   margin-left: 300px;
